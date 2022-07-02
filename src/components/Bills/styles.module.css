@@ -1,0 +1,152 @@
+.header_menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #3bb19b;
+}
+
+.header_content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.header_content > img {
+  width: 40px;
+  height: 40px;
+}
+.header_content > p {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  padding: auto 0;
+}
+
+.table_container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #def2f1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.table_area {
+  min-width: 95vh;
+  min-height: 60vh;
+  background-color: #e2eaf6;
+  text-align: center;
+  padding: 0 15px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%), 0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
+}
+
+.search_area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+  padding: 0 5rem;
+}
+
+.search_box {
+  width: 150px;
+  height: 3rem;
+  border-radius: 5px;
+  border: 1px solid #e2eaf6;
+  padding: 0 1rem;
+  font-size: 1.6rem;
+  outline: none;
+}
+
+.search_area > span {
+  font-size: 2rem;
+}
+
+.add_bill {
+  width: 120px;
+  height: 3rem;
+  background-color: #031e31;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  left: 0;
+}
+
+/* Modal Form */
+
+.login_form_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  outline: none;
+  border: none;
+  width: 370px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #edf5f3;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.white_btn,
+.green_btn {
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  background-color: white;
+  border-radius: 20px;
+  width: 180px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.green_btn {
+  background-color: #3bb19b;
+  color: white;
+  margin: 10px;
+}
+
+.close_btn {
+  background: lightcoral;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  border: none;
+  outline: none;
+  font-size: 1.6rem;
+}
+
+.deleteBtn,
+.editBtn {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  padding: 1px 3px;
+}
+
+.deleteBtn:hover {
+  background-color: #f34646;
+}
+
+.editBtn:hover {
+  background-color: #3bb19b;
+}
