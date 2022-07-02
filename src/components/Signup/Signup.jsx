@@ -18,7 +18,7 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5000/registration";
+      const url = "https://honest-goose-72018.herokuapp.com/registration";
       const { data: res } = await axios.post(url, data);
       navigate("/login");
       console.log(res.message);

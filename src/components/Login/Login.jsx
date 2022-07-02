@@ -14,7 +14,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:5000/login";
+      const url = "https://honest-goose-72018.herokuapp.com/login";
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
       window.location = "/bills";

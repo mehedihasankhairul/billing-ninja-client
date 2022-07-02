@@ -7,15 +7,17 @@ const Bills = () => {
   const [billingList, setBillingList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-console.log(billingList);
+  console.log(billingList);
 
   useEffect(() => {
     refreshBillingList();
   }, [currentPage]);
 
+  // https://honest-goose-72018.herokuapp.com/
+
   const refreshBillingList = () => {
     axios
-      .get(`http://localhost:5000/billing-list?page=${currentPage}`)
+      .get(`https://honest-goose-72018.herokuapp.com/billing-list?page=${currentPage}`)
       .then((res) => setBillingList(res.data, setTotalPages(res.data[1])))
       .catch((err) => console.log(err));
   };
@@ -33,7 +35,9 @@ console.log(billingList);
     document.querySelectorAll('[data-dismiss="modal"]').forEach((e) => e.click());
 
     axios
-      .post("http://localhost:5000/add-billing", data, { headers: { "Content-Type": "application/json" } })
+      .post("https://honest-goose-72018.herokuapp.com/add-billing", data, {
+        headers: { "Content-Type": "application/json" },
+      })
       .then((response) => {
         refreshBillingList();
         console.log(response.data);
@@ -48,7 +52,7 @@ console.log(billingList);
   // handle Edit bill
   const handleEdit = (_id) => {
     axios
-      .get(`http://localhost:5000/update-billing/${_id}`)
+      .get(`https://honest-goose-72018.herokuapp.com/update-billing/${_id}`)
       .then((res) => {
         console.log(res.data);
         document.getElementById("edit-billing-id").value = res.data.id;
@@ -58,7 +62,7 @@ console.log(billingList);
   };
 
   //  Delete billing
-  const URI = "http://localhost:5000/delete-billing";
+  const URI = "https://honest-goose-72018.herokuapp.com/delete-billing";
   const handleDelete = (_id) => {
     axios
       .delete(`${URI}/${_id}`)
@@ -125,24 +129,25 @@ console.log(billingList);
             </thead>
 
             <tbody>
-              {billingList[0] ||  billingList[1]?.map((bill, i) => (
-                <tr key={i}>
-                  <td>{bill._id ? bill._id.substring(18, 24) : "Generating ID..."}</td>
-                  <td>{bill.fullName}</td>
-                  <td>{bill.email}</td>
-                  <td>{bill.phone}</td>
-                  <td>{bill.paidAmount}</td>
-                  <td>
-                    <span onClick={() => handleEdit(bill._id)} className={styles.editBtn}>
-                      Edit
-                    </span>
-                    <span> | </span>
-                    <span onClick={() => handleDelete(bill._id)} className={styles.deleteBtn}>
-                      Delete
-                    </span>
-                  </td>
-                </tr>
-              ))}
+              {billingList[0] ||
+                billingList[1]?.map((bill, i) => (
+                  <tr key={i}>
+                    <td>{bill._id ? bill._id.substring(18, 24) : "Generating ID..."}</td>
+                    <td>{bill.fullName}</td>
+                    <td>{bill.email}</td>
+                    <td>{bill.phone}</td>
+                    <td>{bill.paidAmount}</td>
+                    <td>
+                      <span onClick={() => handleEdit(bill._id)} className={styles.editBtn}>
+                        Edit
+                      </span>
+                      <span> | </span>
+                      <span onClick={() => handleDelete(bill._id)} className={styles.deleteBtn}>
+                        Delete
+                      </span>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
           {/* Pagination */}
