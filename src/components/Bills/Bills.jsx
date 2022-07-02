@@ -18,7 +18,7 @@ const Bills = () => {
   const refreshBillingList = () => {
     axios
       .get(`https://honest-goose-72018.herokuapp.com/billing-list?page=${currentPage}`)
-      .then((res) => setBillingList(res.data, setTotalPages(res.data[1])))
+      .then((res) => setBillingList(res.data[0], setTotalPages(res.data[1])))
       .catch((err) => console.log(err));
   };
 
@@ -74,8 +74,7 @@ const Bills = () => {
   };
 
   // handle Total Paid Amount
-  console.log(billingList);
-  const totalAmount = (billingList || [0])?.reduce((current, amount) => {
+  const totalAmount = billingList?.reduce((current, amount) => {
     const billingAmount = parseInt(amount.paidAmount);
     return current + billingAmount;
   }, 0);
@@ -129,25 +128,24 @@ const Bills = () => {
             </thead>
 
             <tbody>
-              {billingList[0] ||
-                billingList[1]?.map((bill, i) => (
-                  <tr key={i}>
-                    <td>{bill._id ? bill._id.substring(18, 24) : "Generating ID..."}</td>
-                    <td>{bill.fullName}</td>
-                    <td>{bill.email}</td>
-                    <td>{bill.phone}</td>
-                    <td>{bill.paidAmount}</td>
-                    <td>
-                      <span onClick={() => handleEdit(bill._id)} className={styles.editBtn}>
-                        Edit
-                      </span>
-                      <span> | </span>
-                      <span onClick={() => handleDelete(bill._id)} className={styles.deleteBtn}>
-                        Delete
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+              {billingList?.map((bill, i) => (
+                <tr key={i}>
+                  <td>{bill._id ? bill._id.substring(18, 24) : "Generating ID..."}</td>
+                  <td>{bill.fullName}</td>
+                  <td>{bill.email}</td>
+                  <td>{bill.phone}</td>
+                  <td>{bill.paidAmount}</td>
+                  <td>
+                    <span onClick={() => handleEdit(bill._id)} className={styles.editBtn}>
+                      Edit
+                    </span>
+                    <span> | </span>
+                    <span onClick={() => handleDelete(bill._id)} className={styles.deleteBtn}>
+                      Delete
+                    </span>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
           {/* Pagination */}
